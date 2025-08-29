@@ -15,7 +15,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const about = () => {
+const AboutPage = () => {
   return (
     <div className="mt-20">
       <motion.div
@@ -204,4 +204,4 @@ const about = () => {
   );
 };
 
-export default about;
+export default AboutPage;

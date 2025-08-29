@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 const Slide3 = () => {
   return (
-      <div className=' py-10'>
+      <div className=' pb-10'>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 p-8 bg-gradient-to-r from-blue-50 to-indigo-50  border border-slate-300 rounded-3xl shadow-inner">
 
           {/* Video Section */}

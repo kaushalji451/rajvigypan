@@ -14,12 +14,16 @@ const Navbar = () => {
   const [isDesktop, setIsDesktop] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showInfoBar, setShowInfoBar] = useState(true);
+  const [hoverServices, setHoverServices] = useState(false);
 
   const services = [
-    { name: "Web Development", link: "/services/web-development" },
-    { name: "SEO Optimization", link: "/services/seo" },
-    { name: "Graphic Design", link: "/services/graphic-design" },
+    { name: "ADVERTISING & MARKETTING", link: "/services/marketing" },
+    { name: "BRANDING", link: "/services/branding" },
+    { name: "EVENT PLANNER", link: "/services/eventplanner" },
+    { name: "OUTDOOR MEDIA", link: "/services/outdoormedia" },
   ];
+
+  const menuItems = ["Home", "About", "Services", "Portfolio", "Contact"];
 
   // Detect desktop width
   useEffect(() => {
@@ -71,13 +75,14 @@ const Navbar = () => {
                 <IoIosCall /> +91-8960011163
               </p>
               <p className="flex items-center gap-1">
-                <IoMail /> <a href="mailto:info@rajavigyapan.com">info@rajavigyapan.com</a>
+                <IoMail />{" "}
+                <a href="mailto:info@rajavigyapan.com">info@rajavigyapan.com</a>
               </p>
             </div>
             <div className="flex space-x-3 items-center text-lg">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
+              <Link href={"https://www.facebook.com/rajavigyapan"}><FaFacebookF /></Link>
+              <Link href={"https://x.com/rajavigyapan"}><FaTwitter /></Link>
+              <Link href={"https://www.instagram.com/rajavigyapan"}><FaInstagram /></Link>
             </div>
           </motion.div>
         )}
@@ -87,7 +92,7 @@ const Navbar = () => {
       <nav className="flex items-center justify-between px-6 md:px-12 py-3 border-b border-red-800">
         {/* Logo */}
         <div className="flex items-center md:flex-1">
-          <Link href={"/"}>
+          <Link href="/">
             <Image
               src="https://rajavigyapan.com/wp-content/uploads/2023/01/logo.jpg"
               alt="Raja Vigyapan Logo"
@@ -101,14 +106,20 @@ const Navbar = () => {
         {/* Desktop Menu */}
         {isDesktop && (
           <div className="flex space-x-6 font-semibold text-zinc-700">
-            {["Home", "About", "Services", "Clients", "Contact"].map((item) => (
-              <div key={item} className="relative group">
-                <motion.div  whileHover="hover">
-                  <Link
-                    href={`/${item.toLowerCase()}`}
-                    className="hover:text-red-700 transition px-2 py-1"
-                  >
-                    {item}{item === "Services" && <svg
+            {menuItems.map((item) => (
+              <div
+                key={item}
+                className="relative"
+                onMouseEnter={() => item === "Services" && setHoverServices(true)}
+                onMouseLeave={() => item === "Services" && setHoverServices(false)}
+              >
+                <Link
+                  href={item === "Services" ? "/services/marketing" : `/${item.toLowerCase()}` && item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  className="hover:text-red-700 transition px-2 py-1 flex items-center font-semibold"
+                >
+                  {item}
+                  {item === "Services" && (
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-3 w-3 inline-block ml-1"
                       fill="none"
@@ -117,13 +128,13 @@ const Navbar = () => {
                       strokeWidth={2}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>}
-                  </Link>
-                </motion.div>
+                    </svg>
+                  )}
+                </Link>
 
-                {/* Services Dropdown */}
-                {item === "Services" && (
-                  <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg mt-2 min-w-[180px]">
+                {/* Dropdown stays open as long as hoverServices = true */}
+                {item === "Services" && hoverServices && (
+                  <div className="absolute top-full left-0 flex flex-col bg-white shadow-lg mt-2 min-w-[180px] z-50">
                     {services.map((service) => (
                       <Link
                         key={service.name}
@@ -142,7 +153,7 @@ const Navbar = () => {
 
         {/* Mobile Hamburger */}
         {!isDesktop && (
-          <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none">
+          <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none z-50">
             {!isOpen ? (
               <Image
                 src="https://img.icons8.com/fluent-systems-regular/2x/menu-squared-2.png"
@@ -183,16 +194,14 @@ const Navbar = () => {
 
             {/* Menu Links */}
             <div className="relative z-10 flex flex-col">
-              {["Home", "About", "Services", "Clients", "Contact"].map((item) => (
+              {menuItems.map((item) => (
                 <div key={item} className="flex flex-col">
-                  <motion.div whileHover="hover">
-                    <Link
-                      href={`/${item.toLowerCase()}`}
-                      className="block px-4 py-3 text-zinc-700 font-semibold hover:bg-red-200 transition"
-                    >
-                      {item}
-                    </Link>
-                  </motion.div>
+                  <Link
+                    href={item === "Services" ? "#" : `/${item.toLowerCase()}`}
+                    className="block px-4 py-3 text-zinc-700 font-semibold hover:bg-red-200 transition"
+                  >
+                    {item}
+                  </Link>
 
                   {/* Mobile: show services links */}
                   {item === "Services" && (

@@ -5,7 +5,7 @@ import Slide2 from '@/components/homepage/Slide2';
 import Slide3 from '@/components/homepage/Slide3';
 import Slide4 from '@/components/homepage/Slide4';
 
-const index = () => {
+const HomePage = () => {
   return (
     <div className='pt-30 bg-white  min-md:px-10 px-5 py-20'>
       {/* slide1 */}
@@ -24,4 +24,4 @@ const index = () => {
   )
 }
 
-export default index
+export default HomePage

@@ -165,15 +165,15 @@ const Footer = () => {
       {/* Social Media Icons */}
       <div className="bg-gray-900 border-t border-gray-800 py-4 flex justify-center items-center gap-8 text-gray-500">
         {/* Facebook */}
-        <Link href={"/"}>
+        <Link href={"https://www.facebook.com/rajavigyapan"}>
           <FaFacebookF className="w-6 h-6" />
         </Link>
         {/* Twitter */}
-        <Link href={"/"}>
+        <Link href={"https://x.com/rajavigyapan"}>
           <FaTwitter className="w-6 h-6" />
         </Link>
         {/* Instagram */}
-        <Link href={"/"}>
+        <Link href={"https://www.instagram.com/rajavigyapan"}>
           <FaInstagram className="w-6 h-6" />
         </Link>
       </div>

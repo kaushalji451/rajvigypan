@@ -3,27 +3,36 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 const slides = [
   {
-    title: "Grow Your Brand with RVA",
-    subtitle: "Digital Solutions for Every Business",
+    title: "Outdoor Media",
+    subtitle: "High-Impact Outdoor Advertising",
     description:
-      "We help businesses create impactful stories, engage audiences, and achieve growth.",
+      "Maximize your reach with high-impact Outdoor advertising solutions. We offer billboards, hoardings, and transit media across key locations. Get seen, get remembered day and night, citywide.",
     img: "https://rajavigyapan.com/wp-content/uploads/2024/05/WhatsApp-Image-2024-05-24-at-1.03.46-PM-400x284.jpeg",
   },
   {
-    title: "Creative Campaigns",
-    subtitle: "Reach Your Audience Effectively",
+    title: "Branding",
+    subtitle: "Define Your Brand Identity",
     description:
-      "Tailored campaigns designed to maximize engagement and ROI for your brand.",
+      "Your brand is your identity — We help you define it with clarity and style. From logo design to brand voice, we build a strong, consistent image. Stand out with branding that resonates, engages, and inspires loyalty.",
     img: "https://rajavigyapan.com/wp-content/uploads/2024/05/WhatsApp-Image-2024-05-22-at-5.47.20-PM-400x284.jpeg",
   },
   {
-    title: "Events & Promotions",
-    subtitle: "Memorable Experiences",
+    title: "Advertising & Marketing",
+    subtitle: "Strategic Marketing Solutions",
     description:
-      "We organize events that leave lasting impressions and strengthen your brand identity.",
-    img: "https://rajavigyapan.com/wp-content/uploads/2024/05/WhatsApp-Image-2024-05-24-at-1.03.46-PM-400x284.jpeg",
+      "We craft smart campaigns that connect your brand with the right audience. From digital to print, we blend creativity with strategy to boost visibility. Let your message stand out in a crowded market with result-driven solutions.",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQykzoZeCE0p7LeuyHnLYCdPP2jju9d5PaMeA&s",
+  },
+  {
+    title: "Event Planning",
+    subtitle: "Creating Unforgettable Events",
+    description:
+      "From corporate events to cultural festivals, we turn your ideas into unforgettable experiences. Our team handles everything from concept and coordination to flawless execution. With attention to every detail, we create events that leave a lasting impact.",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQykzoZeCE0p7LeuyHnLYCdPP2jju9d5PaMeA&s",
   },
 ];
+
+
 
 const Slide1 = () => {
   const [current, setCurrent] = useState(0);
@@ -44,19 +53,20 @@ const Slide1 = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
             >
-              {/* Mobile Background Image */}
-              <div className="absolute inset-0 lg:hidden">
+              {/* Background Image for all views */}
+              <div className="absolute inset-0 z-0">
                 <img
                   src={slide.img}
                   alt={slide.title}
-                  className="w-full h-full object-cover opacity-40"
+                  className="w-full h-full object-cover opacity-40 lg:opacity-60 transition-all duration-700"
+                  style={{ objectPosition: "center", objectFit: "cover" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-50"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-50 lg:to-indigo-100"></div>
               </div>
 
-              {/* Left Side Text */}
+              {/* Left Side Content */}
               <motion.div
-                className="relative lg:w-1/2 space-y-6 text-center lg:text-left"
+                className="relative z-10 lg:w-1/2 space-y-6 text-center lg:text-left"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8 }}
@@ -92,9 +102,10 @@ const Slide1 = () => {
                 </div>
               </motion.div>
 
+
               {/* Right Side Image - Desktop Only */}
               <motion.div
-                className="hidden lg:flex lg:w-1/2 mt-8 lg:mt-0 justify-center items-center"
+                className="hidden lg:flex lg:w-full mt-8 lg:mt-0  justify-end items-center relative z-10"
                 initial={{ x: 50, opacity: 0, scale: 0.9 }}
                 animate={{ x: 0, opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
