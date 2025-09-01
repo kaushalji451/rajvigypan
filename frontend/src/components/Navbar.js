@@ -1,230 +1,130 @@
-"use client";
+import React, { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { IoIosCall } from "react-icons/io";
-import { IoMail } from "react-icons/io5";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-import { motion, AnimatePresence, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import Image from "next/image";
+const navLinks = [
+  { label: 'Home', href: 'homeRef' },
+  { label: 'About', href: 'aboutRef' },
+  { label: 'Services', href: 'servicesRef' },
+  { label: 'Portfolio', href: 'projectRef' },
+  { label: 'Clients', href: 'clientsRef' },
+  { label: 'Contact', href: 'contactRef' },
+]
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showInfoBar, setShowInfoBar] = useState(true);
-  const [hoverServices, setHoverServices] = useState(false);
+const menuVariants = {
+  hidden: { y: '-100%', opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeInOut' } },
+  exit: { y: '-100%', opacity: 0, transition: { duration: 0.4, ease: 'easeInOut' } },
+}
 
-  const services = [
-    { name: "ADVERTISING & MARKETTING", link: "/services/marketing" },
-    { name: "BRANDING", link: "/services/branding" },
-    { name: "EVENT PLANNER", link: "/services/eventplanner" },
-    { name: "OUTDOOR MEDIA", link: "/services/outdoormedia" },
-  ];
+const Navbar = ({ navRefs }) => {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [showNavbar, setShowNavbar] = useState(true)
+  const lastScrollY = useRef(0)
 
-  const menuItems = ["Home", "About", "Services", "Portfolio", "Contact"];
+  const handleScroll = (refName) => {
+    const ref = navRefs[refName]
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
-  // Detect desktop width
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Detect scroll for blur and info bar hide/show
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-      if (window.scrollY === 0) setShowInfoBar(true);
-      else if (window.scrollY > lastScrollY) setShowInfoBar(false);
-      else if (window.scrollY < lastScrollY) setShowInfoBar(window.scrollY < 50);
-      lastScrollY = window.scrollY;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Framer Motion animation for scroll
-  const controls = useAnimation();
-  const [ref, inView] = useInView({ threshold: 0 });
-  useEffect(() => {
-    if (inView) controls.start("visible");
-    else controls.start("hidden");
-  }, [controls, inView]);
-
-  const navClasses = `bg-white w-full fixed top-0 z-50 transition-all duration-300 ${isScrolled ? "backdrop-blur-lg bg-white/70 shadow-xl" : ""
-    }`;
+    const handleScrollEvent = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > lastScrollY.current && currentScrollY > window.innerHeight / 2) {
+        setShowNavbar(false)
+      } else if (currentScrollY < lastScrollY.current) {
+        setShowNavbar(true)
+      }
+      lastScrollY.current = currentScrollY
+    }
+    window.addEventListener('scroll', handleScrollEvent)
+    return () => window.removeEventListener('scroll', handleScrollEvent)
+  }, [])
 
   return (
-    <header ref={ref} className={navClasses}>
-      {/* Top Info Bar */}
-      <AnimatePresence>
-        {showInfoBar && (
-          <motion.div
-            key="info-bar"
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1, transition: { duration: 0.4 } }}
-            exit={{ y: -50, opacity: 0, transition: { duration: 0.4 } }}
-            className="hidden md:flex gap-3 items-center bg-red-600 text-white text-sm px-6 py-2"
-          >
-            <div className="flex space-x-4 items-center">
-              <p className="flex items-center gap-1">
-                <IoIosCall /> +91-8960011163
-              </p>
-              <p className="flex items-center gap-1">
-                <IoMail />{" "}
-                <a href="mailto:info@rajavigyapan.com">info@rajavigyapan.com</a>
-              </p>
-            </div>
-            <div className="flex space-x-3 items-center text-lg">
-              <Link href={"https://www.facebook.com/rajavigyapan"}><FaFacebookF /></Link>
-              <Link href={"https://x.com/rajavigyapan"}><FaTwitter /></Link>
-              <Link href={"https://www.instagram.com/rajavigyapan"}><FaInstagram /></Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Main Navbar */}
-      <nav className="flex items-center justify-between px-6 md:px-12 py-3 border-b border-red-800">
-        {/* Logo */}
-        <div className="flex items-center md:flex-1">
-          <Link href="/">
+    <AnimatePresence>
+      {showNavbar && (
+        <motion.nav
+          className="fixed top-0 left-0 w-full z-50 bg-[rgba(255,127,48,1)] py-3 px-10 rounded-full flex items-center justify-between shadow-lg"
+          initial={{ y: '-100%' }}
+          animate={{ y: 0 }}
+          exit={{ y: '-100%', transition: { duration: 0.3 } }}
+        >
+          <Link href="/" className="w-1/3">
             <Image
               src="https://rajavigyapan.com/wp-content/uploads/2023/01/logo.jpg"
               alt="Raja Vigyapan Logo"
               width={80}
               height={48}
-              className="h-13 w-20"
+              className="h-15 w-15 rounded-full"
             />
           </Link>
-        </div>
 
-        {/* Desktop Menu */}
-        {isDesktop && (
-          <div className="flex space-x-6 font-semibold text-zinc-700">
-            {menuItems.map((item) => (
-              <div
-                key={item}
-                className="relative"
-                onMouseEnter={() => item === "Services" && setHoverServices(true)}
-                onMouseLeave={() => item === "Services" && setHoverServices(false)}
-              >
-                <Link
-                  href={item === "Services" ? "/services/marketing" : `/${item.toLowerCase()}` && item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="hover:text-red-700 transition px-2 py-1 flex items-center font-semibold"
-                >
-                  {item}
-                  {item === "Services" && (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-3 w-3 inline-block ml-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  )}
-                </Link>
-
-                {/* Dropdown stays open as long as hoverServices = true */}
-                {item === "Services" && hoverServices && (
-                  <div className="absolute top-full left-0 flex flex-col bg-white shadow-lg mt-2 min-w-[180px] z-50">
-                    {services.map((service) => (
-                      <Link
-                        key={service.name}
-                        href={service.link}
-                        className="px-4 py-2 hover:bg-red-100 transition"
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
+          {/* Desktop Menu */}
+          <ul className="hidden lg:flex gap-10">
+            {navLinks.map(({ label, href }) => (
+              <li key={label} className="cursor-pointer hover:underline">
+                <button onClick={() => handleScroll(href)}>{label}</button>
+              </li>
             ))}
-          </div>
-        )}
+          </ul>
 
-        {/* Mobile Hamburger */}
-        {!isDesktop && (
-          <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none z-50">
-            {!isOpen ? (
-              <Image
-                src="https://img.icons8.com/fluent-systems-regular/2x/menu-squared-2.png"
-                width="28"
-                height="28"
-                alt="Menu"
-              />
-            ) : (
-              <Image
-                src="https://img.icons8.com/fluent-systems-regular/2x/close-window.png"
-                width="28"
-                height="28"
-                alt="Close"
-              />
+          {/* Mobile Menu Button */}
+          {!menuOpen && (
+            <button
+              className="lg:hidden ml-auto z-50"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              <svg width="32" height="32" fill="black" viewBox="0 0 24 24">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" />
+              </svg>
+            </button>
+          )}
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {menuOpen && (
+              <motion.div
+                className="fixed inset-0 z-40 bg-[rgba(255,127,48,0.98)] flex flex-col items-center pt-20"
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={menuVariants}
+              >
+                <button
+                  className="absolute top-6 right-8 text-black text-3xl"
+                  onClick={() => setMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  &times;
+                </button>
+
+                <ul className="flex flex-col gap-4 text-black text-2xl w-full items-center">
+                  {navLinks.map(({ label, href }) => (
+                    <li key={label} className="w-[80%] border-b">
+                      <button
+                        onClick={() => {
+                          handleScroll(href)
+                          setMenuOpen(false)
+                        }}
+                        className="block px-4 py-2"
+                      >
+                        {label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             )}
-          </button>
-        )}
-      </nav>
+          </AnimatePresence>
+        </motion.nav>
+      )}
+    </AnimatePresence>
+  )
+}
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && !isDesktop && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            exit={{ scaleY: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="origin-top absolute top-full left-0 w-full h-screen flex flex-col md:hidden overflow-hidden"
-            style={{
-              backgroundImage: "url('/Ralogo.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-slate-200/80"></div>
-
-            {/* Menu Links */}
-            <div className="relative z-10 flex flex-col">
-              {menuItems.map((item) => (
-                <div key={item} className="flex flex-col">
-                  <Link
-                    href={item === "Services" ? "#" : `/${item.toLowerCase()}`}
-                    className="block px-4 py-3 text-zinc-700 font-semibold hover:bg-red-200 transition"
-                  >
-                    {item}
-                  </Link>
-
-                  {/* Mobile: show services links */}
-                  {item === "Services" && (
-                    <div className="pl-6 flex flex-col">
-                      {services.map((service) => (
-                        <Link
-                          key={service.name}
-                          href={service.link}
-                          className="block px-4 py-2 text-zinc-700 font-medium hover:bg-red-100 transition"
-                        >
-                          {service.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-  );
-};
-
-export default Navbar;
+export default Navbar

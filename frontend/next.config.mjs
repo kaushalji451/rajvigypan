@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       "rajavigyapan.com", // your logo
       "img.icons8.com",   // icons
+      "images.unsplash.com"
     ],
   },
 };

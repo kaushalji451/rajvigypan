@@ -1,25 +1,44 @@
 "use client";
 import React from 'react'
-import Slide1 from '@/components/homepage/Slide1';
-import Slide2 from '@/components/homepage/Slide2';
-import Slide3 from '@/components/homepage/Slide3';
-import Slide4 from '@/components/homepage/Slide4';
+import Home from '@/components/pages/Home';
+import About from '@/components/pages/About';
+import Services from '@/components/pages/Services';
+import Proejcts from '@/components/pages/Proejcts';
+import Clients from '@/components/pages/Clients';
+import Contact from '@/components/pages/Contact';
 
-const HomePage = () => {
+const HomePage = ({ navRefs }) => {
   return (
-    <div className='pt-30 bg-white  min-md:px-10 px-5 py-20'>
-      {/* slide1 */}
-      <Slide1 />
+    <div className='pt-21 bg-white'>
+      {/* Home */}
+      <section ref={navRefs.homeRef}>
+        <Home />
+      </section>
 
-      {/* slide2 */}
-      <Slide2 />
+      {/* About */}
+      <section ref={navRefs.aboutRef}>
+        <About />
+      </section>
 
-      {/* Slide 3 */}
-      <Slide3 />
+      {/* Services */}
+      <section ref={navRefs.servicesRef}>
+        <Services />
+      </section>
 
-      {/* Slide 4 */}
-      <Slide4 />
+      {/* Projects */}
+      <section ref={navRefs.projectRef}>
+        <Proejcts />
+      </section>
 
+      {/* Clients */}
+      <section ref={navRefs.clientsRef}>
+        <Clients />
+      </section>
+
+      {/* Contact */}
+      <section ref={navRefs.contactRef}>
+        <Contact />
+      </section>
     </div>
   )
 }

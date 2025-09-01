@@ -1,184 +1,110 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-import { BiArrowToTop } from "react-icons/bi";
-
-import Link from "next/link";
-
-const navItems = [
-  { label: "HOME", href: "#" },
-  { label: "ABOUT", href: "#" },
-  {
-    label: "SERVICES",
-    subItems: [
-      { label: "ADVERTISING & MARKETING", href: "#" },
-      { label: "BRANDING", href: "#" },
-      { label: "EVENT PLANNER", href: "#" },
-      { label: "OUTDOOR MEDIA", href: "#" },
-    ],
-  },
-  { label: "PORTFOLIO", href: "#" },
-  { label: "CLIENTS", href: "#" },
-  { label: "CONTACT", href: "#" },
-];
+import React, { useRef } from 'react'
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa'
+import Link from 'next/link'
+import { motion, useInView } from 'framer-motion'
 
 const Footer = () => {
-  const [showScrollBtn, setShowScrollBtn] = useState(false);
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  useEffect(() => {
-    // Make sure window exists
-    if (typeof window === "undefined") return;
+  // Parent container animation with stagger
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2, // delay between children
+      },
+    },
+  }
 
-    const handleScroll = () => {
-      setShowScrollBtn(window.pageYOffset > 300);
-    };
+  // Individual text animation
+  const textAnimation = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  }
 
-    window.addEventListener("scroll", handleScroll);
-
-    // Call handler on mount to set initial state
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
   return (
-    <footer className="relative bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-12 md:gap-24 text-sm md:text-base">
-        {/* Navigation Menu */}
-        <nav className="md:flex-1">
-          <ul
-            className="list-disc list-inside space-y-2  max-w-xs"
-            aria-label="Primary Site Navigation"
-          >
-            {navItems.map((item, index) =>
-              item.subItems ? (
-                <li key={index}>
-                  <details className="group open:first:list-disc" open>
-                    <summary className="cursor-pointer font-semibold select-none flex items-center space-x-2 before:content-['▶'] before:inline-block before:text-white before:rotate-0 before:transition-transform before:mr-1 group-open:before:rotate-90">
-                      <span>{item.label}</span>
-                    </summary>
-                    <ul className="pl-6 mt-2 space-y-1  text-white list-disc list-inside">
-                      {item.subItems.map((sub, subIndex) => (
-                        <li key={subIndex}>
-                          <Link className="hover:text-slate-300"
-                            href={sub.href}
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                </li>
-              ) : (
-                <li key={index}>
-                  <Link
-                    href={item.href}
-                    className="hover:underline hover:text-slate-300 focus:underline focus:outline-none"
-                  >
-                    {item.label} 
+    <div className="">
+      <footer className="bg-[rgba(255,127,48,1)] py-10 rounded-4xl px-5 md:px-10 flex flex-col gap-5">
+        <motion.div
+          className="flex flex-col md:flex-row justify-between gap-10 md:gap-5 flex-wrap"
+          ref={ref}
+          variants={container}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+        >
+          {/* Section 1 */}
+          <motion.div className="flex flex-col gap-2 md:w-1/3">
+            {["Rajavigypana", "From Strategy to Success"].map((text, i) => (
+              <motion.div key={i} variants={textAnimation} className={i === 1 ? "w-full md:w-2/3 text-4xl " : "text-4xl"}>
+                {text}
+              </motion.div>
+            ))}
+            <motion.div className="flex gap-5 mt-3">
+              {[{
+                href: "https://www.facebook.com/rajavigyapan",
+                icon: <FaFacebookF />
+              }, {
+                href: "https://x.com/rajavigyapan",
+                icon: <FaTwitter />
+              }, {
+                href: "https://www.instagram.com/rajavigyapan",
+                icon: <FaInstagram />
+              }].map((item, i) => (
+                <motion.div key={i} variants={textAnimation}>
+                  <Link href={item.href}>
+                    <div className="w-10 h-10 text-[rgba(255,127,48,1)] bg-black p-2 rounded-full flex items-center justify-center">
+                      {item.icon}
+                    </div>
                   </Link>
-                </li>
-              )
-            )}
-          </ul>
-        </nav>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
 
-        {/* Company Description */}
-        <section className="md:flex-2 max-w-xl prose prose-invert">
-          <p className="flex items-start gap-2">
-            <span>
-              Established in 2004 as a proprietorship under the name Raja
-              Vigyapan Agency, the company was incorporated as Raja Vigyapan
-              Agency Pvt. Ltd. on 24th December 2010. Headquartered in Lucknow,
-              we have since grown into a trusted name in the fields of branding,
-              advertising, and marketing communications. With a strong
-              foundation and years of experience, we continue to deliver
-              creative, impactful, and result-driven solutions to businesses
-              and institutions across India.
-            </span>
-          </p>
-        </section>
+          {/* Section 2 */}
+          <motion.div className="flex flex-col gap-2 md:w-1/4 text-sm">
+            {[
+              "+91-8960011163",
+              "info@rajavigyapan.com",
+              "1 st Floor, 1-B,",
+              "Ishwarpuri, Sector-12,",
+              "Near Ishwar Dham Mandir,",
+              "Indiranagar, Lucknow",
+              "-226016",
+              "Uttar Pradesh"
+            ].map((line, i) => (
+              <motion.p key={i} variants={textAnimation}>{line}</motion.p>
+            ))}
+          </motion.div>
 
-        {/* Office Address and Contact */}
-        <section className="md:flex-1 max-w-xs">
-          <h3 className="text-red-600 font-bold text-lg mb-4">Office Address</h3>
-          <address className="not-italic mb-6 text-white font-semibold space-y-1">
-            <p>1 st Floor, 1-B,</p>
-            <p>Ishwarpuri, Sector-12,</p>
-            <p>Near Ishwar Dham Mandir,</p>
-            <p>Indiranagar, Lucknow</p>
-            <p>-226016</p>
-            <p>Uttar Pradesh</p>
-          </address>
-          <div className="font-semibold text-white space-y-1">
-            <p>
-              <strong>Call us:</strong>{" "}
-              <Link
-                href="tel:+918960011163"
-                className="hover:text-red-400 focus:text-red-400 focus:outline-none"
-              >
-                +91-8960011163
-              </Link>
-            </p>
-            <p>
-              <strong>Mail us:</strong>{" "}
-              <Link
-                href="mailto:info@rajavigyapan.com"
-                className="hover:text-red-400 focus:text-red-400 focus:outline-none"
-              >
-                info@rajavigyapan.com
-              </Link>
-            </p>
-          </div>
-        </section>
-      </div>
+          {/* Section 3 */}
+          <motion.div className="md:w-1/6">
+            {["Home", "About", "Portfolio", "Clients", "Contact"].map((item, i) => (
+              <motion.li key={i} variants={textAnimation}>{item}</motion.li>
+            ))}
+          </motion.div>
 
-      {/* Scroll to Top Button */}
-      {showScrollBtn && (
-        <button
-          onClick={scrollToTop}
-          aria-label="Scroll to top"
-          title="Scroll to top"
-          className="fixed bottom-6 right-6 bg-black text-white p-3 rounded shadow-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600"
+          {/* Section 4 */}
+          <motion.div className="md:w-1/6">
+            {["Services", ": Advertising & Marketing", ": Branding", ": Event Planner", ": Outdoor Media"].map((item, i) => (
+              <motion.li key={i} variants={textAnimation} className={i !== 0 ? "ps-2" : ""}>{item}</motion.li>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Footer bottom */}
+        <motion.div
+          variants={textAnimation}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="border-t text-sm pt-5"
         >
-          <BiArrowToTop className="w-6 h-6" />
-        </button>
-      )}
+          © 2035 by Rajavigypana. Powered and secured by US.
+        </motion.div>
+      </footer>
+    </div>
+  )
+}
 
-      {/* Footer Bottom Bar */}
-      <div className="bg-gray-800 text-gray-400 text-center py-4 text-sm flex items-center justify-center space-x-2">
-        <span>Powered by:</span>
-        <Link
-          href="#"
-          className="hover:text-red-600 focus:text-red-600 focus:outline-none font-semibold"
-        >
-          Raja Vigyapan Agency Pvt Ltd
-        </Link>
-      </div>
-
-      {/* Social Media Icons */}
-      <div className="bg-gray-900 border-t border-gray-800 py-4 flex justify-center items-center gap-8 text-gray-500">
-        {/* Facebook */}
-        <Link href={"https://www.facebook.com/rajavigyapan"}>
-          <FaFacebookF className="w-6 h-6" />
-        </Link>
-        {/* Twitter */}
-        <Link href={"https://x.com/rajavigyapan"}>
-          <FaTwitter className="w-6 h-6" />
-        </Link>
-        {/* Instagram */}
-        <Link href={"https://www.instagram.com/rajavigyapan"}>
-          <FaInstagram className="w-6 h-6" />
-        </Link>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
+export default Footer
