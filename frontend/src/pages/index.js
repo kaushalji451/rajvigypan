@@ -12,7 +12,7 @@ const HomePage = ({ navRefs }) => {
     <div className='pt-21 bg-white'>
       {/* Home */}
       <section ref={navRefs.homeRef}>
-        <Home />
+        <Home navRefs={navRefs}/>
       </section>
 
       {/* About */}

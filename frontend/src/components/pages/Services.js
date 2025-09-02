@@ -121,10 +121,6 @@ const Services = () => {
             <strong>ideas into lasting impact.</strong>
           </p>
         </div>
-
-        <div className="flex justify-center lg:justify-start items-center pt-5">
-          <AnimatedButton text={"Discover More"} />
-        </div>
       </div>
 
       {/* Right Section */}
