@@ -48,7 +48,7 @@ const Projects = () => {
                 initial={{ y: 100, opacity: 0 }}       // Start way below
                 whileInView={{ y: 0, opacity: 1 }}     // Slide up to original position
                 viewport={{ once: true, amount: 0.5 }} // Trigger when 50% visible
-                transition={{ duration: 0.8, delay: 2, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
               >
                 <Image
                   width={300}

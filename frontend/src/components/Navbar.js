@@ -66,8 +66,8 @@ const Navbar = ({ navRefs }) => {
           {/* Desktop Menu */}
           <ul className="hidden lg:flex gap-10">
             {navLinks.map(({ label, href }) => (
-              <li key={label} className="cursor-pointer hover:underline">
-                <button onClick={() => handleScroll(href)}>{label}</button>
+              <li key={label}>
+                <button onClick={() => handleScroll(href)} className='cursor-pointer hover:underline'>{label}</button>
               </li>
             ))}
           </ul>

@@ -9,18 +9,39 @@ const Contact = () => {
     message: ''
   });
 
-  let handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    alert("Form submitted");
-    setformdata({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      message: ''
+ let handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log(formData);
+  try {
+    let data = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
     });
-  };
+
+    let result = await data.json();
+    console.log(result);
+
+    if (data.ok) {
+      alert("Form submitted successfully!");
+      setformdata({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    } else {
+      alert(result.message || "Something went wrong!");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Error submitting form");
+  }
+};
+
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
@@ -39,15 +60,15 @@ const Contact = () => {
         <p className="text-lg lg:text-xl text-center lg:text-left mb-6">
           Get in Touch with Us Today
         </p>
-        
+
         <form onSubmit={handleSubmit} className="w-full max-w-3xl">
           {/* First & Last Name */}
           <div className="flex flex-col sm:flex-row gap-5">
             <div className="flex flex-col w-full">
-              <label htmlFor="name" className="py-3">First Name *</label>
+              <label htmlFor="firstName" className="py-3">First Name *</label>
               <input
                 type="text"
-                id="name"
+                id="firstName"
                 className="border-b focus:outline-none p-2 bg-transparent"
                 required
                 value={formData.firstName}
