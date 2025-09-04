@@ -2,7 +2,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-export default function AnimatedButton({text}) {
+export default function AnimatedButton({text,href}) {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true });
 

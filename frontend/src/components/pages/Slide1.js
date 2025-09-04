@@ -10,7 +10,7 @@ import { useRef, useEffect } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Home = ({ navRefs }) => {
+const Slide1 = ({ navRefs }) => {
   const lastScrollY = useRef(0)
   const handleScroll = (refName) => {
     const ref = navRefs[refName]
@@ -81,4 +81,4 @@ const Home = ({ navRefs }) => {
   );
 };
 
-export default Home;
+export default Slide1;

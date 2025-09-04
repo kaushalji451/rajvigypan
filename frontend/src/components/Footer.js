@@ -34,13 +34,13 @@ const Footer = () => {
           animate={isInView ? 'visible' : 'hidden'}
         >
           {/* Section 1 */}
-          <motion.div className="flex flex-col gap-2 md:w-1/3">
+          <motion.div className="flex flex-col gap-2  md:w-1/3">
             {["Rajavigypana", "From Strategy to Success"].map((text, i) => (
-              <motion.div key={i} variants={textAnimation} className={i === 1 ? "w-full md:w-2/3 text-4xl " : "text-4xl"}>
+              <motion.div key={i} variants={textAnimation} className={i === 1 ? "w-full md:w-2/3 text-4xl py-10" : "text-4xl"}>
                 {text}
               </motion.div>
             ))}
-            <motion.div className="flex gap-5 mt-3">
+            <motion.div className="flex gap-5 ">
               {[{
                 href: "https://www.facebook.com/rajavigyapan",
                 icon: <FaFacebookF />
@@ -80,16 +80,14 @@ const Footer = () => {
 
           {/* Section 3 */}
           <motion.div className="md:w-1/6">
-            {["Home", "About", "Portfolio", "Clients", "Contact"].map((item, i) => (
-              <motion.li key={i} variants={textAnimation}>{item}</motion.li>
+            {["Privacy","Policy","Accessibility Statement"].map((item, i) => (
+              <motion.p key={i} variants={textAnimation}>{item}</motion.p >
             ))}
           </motion.div>
 
           {/* Section 4 */}
           <motion.div className="md:w-1/6">
-            {["Services", ": Advertising & Marketing", ": Branding", ": Event Planner", ": Outdoor Media"].map((item, i) => (
-              <motion.li key={i} variants={textAnimation} className={i !== 0 ? "ps-2" : ""}>{item}</motion.li>
-            ))}
+              
           </motion.div>
         </motion.div>
 
@@ -100,7 +98,7 @@ const Footer = () => {
           animate={isInView ? 'visible' : 'hidden'}
           className="border-t text-sm pt-5"
         >
-          © 2035 by Rajavigypana. Powered and secured by US.
+          © { new Date().getFullYear()} by  Raja Vigyapan Agency Pvt Ltd. Powered and secured by US.
         </motion.div>
       </footer>
     </div>

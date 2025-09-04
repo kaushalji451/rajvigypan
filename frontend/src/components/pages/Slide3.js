@@ -6,7 +6,6 @@ import { FaUserTie, FaBullhorn } from "react-icons/fa";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import services from "../services";
-
 // Map subtitles to icons
 const iconMap = {
   "Integrated Campaigns": (
@@ -54,7 +53,7 @@ const ServiceItem = ({ service }) => {
   );
 };
 
-const Services = () => {
+const Slide3 = () => {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Section */}
@@ -121,6 +120,7 @@ const Services = () => {
             <strong>ideas into lasting impact.</strong>
           </p>
         </div>
+        <AnimatedButton text={"Discover More"}/>
       </div>
 
       {/* Right Section */}
@@ -133,4 +133,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Slide3;

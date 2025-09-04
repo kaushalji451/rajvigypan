@@ -2,14 +2,15 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const navLinks = [
-  { label: 'Home', href: 'homeRef' },
-  { label: 'About', href: 'aboutRef' },
-  { label: 'Services', href: 'servicesRef' },
-  { label: 'Portfolio', href: 'projectRef' },
-  { label: 'Clients', href: 'clientsRef' },
-  { label: 'Contact', href: 'contactRef' },
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Portfolio', href: '/projects' },
+  { label: 'Clients', href: '/clients' },
+  { label: 'Contact', href: 'contactRef', isRef: true }, // mark as ref
 ]
 
 const menuVariants = {
@@ -19,6 +20,7 @@ const menuVariants = {
 }
 
 const Navbar = ({ navRefs }) => {
+  const router = useRouter()
   const [menuOpen, setMenuOpen] = useState(false)
   const [showNavbar, setShowNavbar] = useState(true)
   const lastScrollY = useRef(0)
@@ -28,6 +30,19 @@ const Navbar = ({ navRefs }) => {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+  }
+
+  const handleContactClick = () => {
+    // If already on home page
+    if (router.pathname === '/') {
+      handleScroll('contactRef')
+    } else {
+      router.push('/').then(() => {
+        // Use setTimeout to ensure the element exists after navigation
+        setTimeout(() => handleScroll('contactRef'), 100)
+      })
+    }
+    setMenuOpen(false)
   }
 
   useEffect(() => {
@@ -65,9 +80,20 @@ const Navbar = ({ navRefs }) => {
 
           {/* Desktop Menu */}
           <ul className="hidden lg:flex gap-10">
-            {navLinks.map(({ label, href }) => (
+            {navLinks.map(({ label, href, isRef }) => (
               <li key={label}>
-                <button onClick={() => handleScroll(href)} className='cursor-pointer hover:underline'>{label}</button>
+                {isRef ? (
+                  <button
+                    onClick={handleContactClick}
+                    className="cursor-pointer hover:underline"
+                  >
+                    {label}
+                  </button>
+                ) : (
+                  <Link href={href} className="cursor-pointer hover:underline">
+                    {label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -104,11 +130,13 @@ const Navbar = ({ navRefs }) => {
                 </button>
 
                 <ul className="flex flex-col gap-4 text-black text-2xl w-full items-center">
-                  {navLinks.map(({ label, href }) => (
+                  {navLinks.map(({ label, href, isRef }) => (
                     <li key={label} className="w-[80%] border-b">
                       <button
                         onClick={() => {
-                          handleScroll(href)
+                          if (isRef) {
+                            handleContactClick()
+                          }
                           setMenuOpen(false)
                         }}
                         className="block px-4 py-2"

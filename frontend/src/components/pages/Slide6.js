@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import clientsImage from '../ClientImg';
 
-const Clients = () => {
+const Slide6 = () => {
   return (
     <div className='bg-[#ff7f30] rounded-4xl p-6 md:p-10 w-full 
                     h-auto  flex flex-col  justify-center overflow-hidden'>
@@ -42,4 +42,4 @@ const Clients = () => {
   );
 };
 
-export default Clients;
+export default Slide6;

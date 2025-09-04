@@ -3,7 +3,7 @@ import Image from "next/image";
 import HoverCircle from "../HoveredCircle"
 import { motion } from "framer-motion";
 import projects from "../proejcts";
-const Projects = () => {
+const Slide4 = () => {
 
 
   return (
@@ -71,4 +71,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Slide4;

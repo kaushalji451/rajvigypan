@@ -1,38 +1,38 @@
 "use client";
 import React from 'react'
-import Home from '@/components/pages/Home';
-import About from '@/components/pages/About';
-import Services from '@/components/pages/Services';
-import Proejcts from '@/components/pages/Proejcts';
-import Clients from '@/components/pages/Clients';
+import Slide1 from '@/components/pages/Slide1';
+import Slide2 from '@/components/pages/Slide2';
+import Slide3 from '@/components/pages/Slide3';
+import Slide4 from '@/components/pages/Slide4';
+import Slide6 from '@/components/pages/Slide6';
 import Contact from '@/components/pages/Contact';
 
 const HomePage = ({ navRefs }) => {
   return (
     <div className='pt-21 bg-white'>
       {/* Home */}
-      <section ref={navRefs.homeRef}>
-        <Home navRefs={navRefs}/>
+      <section>
+        <Slide1/>
       </section>
 
       {/* About */}
-      <section ref={navRefs.aboutRef}>
-        <About />
+      <section>
+        <Slide2 />
       </section>
 
       {/* Services */}
-      <section ref={navRefs.servicesRef}>
-        <Services />
+      <section>
+        <Slide3 />
       </section>
 
       {/* Projects */}
-      <section ref={navRefs.projectRef}>
-        <Proejcts />
+      <section>
+        <Slide4 />
       </section>
 
       {/* Clients */}
-      <section ref={navRefs.clientsRef}>
-        <Clients />
+      <section>
+        <Slide6 />
       </section>
 
       {/* Contact */}

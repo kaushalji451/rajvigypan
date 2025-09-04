@@ -1,6 +1,6 @@
 import React from "react";
 import sections from "../aboutSection";
-const About = () => {
+const Slide2 = () => {
   return (
     <div className="flex flex-col lg:flex-row  h-auto lg:h-[300px]">
       {/* First Block */}
@@ -31,4 +31,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Slide2;
