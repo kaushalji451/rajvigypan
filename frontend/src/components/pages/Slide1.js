@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import AnimatedButton from "../Button";
 import { motion } from "framer-motion";
 import slides from "../homeSlides";
 
