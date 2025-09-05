@@ -18,7 +18,7 @@ const menuVariants = {
   visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeInOut' } },
   exit: { y: '-100%', opacity: 0, transition: { duration: 0.4, ease: 'easeInOut' } },
 }
-
+   
 const Navbar = ({ navRefs }) => {
   const router = useRouter()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -131,24 +131,36 @@ const Navbar = ({ navRefs }) => {
 
                 <ul className="flex flex-col gap-4 text-black text-2xl w-full items-center">
                   {navLinks.map(({ label, href, isRef }) => (
-                    <li key={label} className="w-[80%] border-b">
-                      <button
-                        onClick={() => {
-                          if (isRef) {
-                            handleContactClick()
-                          }
-                          setMenuOpen(false)
-                        }}
-                        className="block px-4 py-2"
-                      >
-                        {label}
-                      </button>
+                    <li
+                      key={label}
+                      className="w-[80%] border-b text-center py-2 border-slate-600"
+                    >
+                      {isRef ? (
+                        <button
+                          onClick={() => {
+                            handleContactClick();
+                            setMenuOpen(false); // 👈 close menu after clicking
+                          }}
+                          className="cursor-pointer hover:underline"
+                        >
+                          {label}
+                        </button>
+                      ) : (
+                        <Link
+                          href={href}
+                          onClick={() => setMenuOpen(false)}
+                          className="cursor-pointer hover:underline"
+                        >
+                          {label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
               </motion.div>
             )}
           </AnimatePresence>
+
         </motion.nav>
       )}
     </AnimatePresence>

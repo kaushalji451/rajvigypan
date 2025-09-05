@@ -80,7 +80,7 @@ const Footer = () => {
 
           {/* Section 3 */}
           <motion.div className="md:w-1/6">
-            {["Privacy","Policy","Accessibility Statement"].map((item, i) => (
+            {["Privacy Policy","Accessibility","Statement"].map((item, i) => (
               <motion.p key={i} variants={textAnimation}>{item}</motion.p >
             ))}
           </motion.div>

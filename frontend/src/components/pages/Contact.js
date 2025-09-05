@@ -9,38 +9,38 @@ const Contact = () => {
     message: ''
   });
 
- let handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log(formData);
-  try {
-    let data = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    let result = await data.json();
-    console.log(result);
-
-    if (data.ok) {
-      alert("Form submitted successfully!");
-      setformdata({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        message: ''
+  let handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+    try {
+      let data = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-    } else {
-      alert(result.message || "Something went wrong!");
+
+      let result = await data.json();
+      console.log(result);
+
+      if (data.ok) {
+        alert("Form submitted successfully!");
+        setformdata({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        alert(result.message || "Something went wrong!");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error submitting form");
     }
-  } catch (error) {
-    console.error(error);
-    alert("Error submitting form");
-  }
-};
+  };
 
 
   return (

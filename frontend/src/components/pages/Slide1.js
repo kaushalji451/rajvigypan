@@ -5,33 +5,11 @@ import { Autoplay, Pagination } from "swiper/modules";
 import AnimatedButton from "../Button";
 import { motion } from "framer-motion";
 import slides from "../homeSlides";
-import { useRef, useEffect } from "react";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Slide1 = ({ navRefs }) => {
-  const lastScrollY = useRef(0)
-  const handleScroll = (refName) => {
-    const ref = navRefs[refName]
-    if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
-  useEffect(() => {
-    const handleScrollEvent = () => {
-      const currentScrollY = window.scrollY
-      if (currentScrollY > lastScrollY.current && currentScrollY > window.innerHeight / 2) {
-      } else if (currentScrollY < lastScrollY.current) {
-      }
-      lastScrollY.current = currentScrollY
-    }
-    window.addEventListener('scroll', handleScrollEvent)
-    return () => window.removeEventListener('scroll', handleScrollEvent)
-  }, [])
-
-
+const Slide1 = () => {
   return (
     <div className="w-full">
       <Swiper
@@ -58,9 +36,6 @@ const Slide1 = ({ navRefs }) => {
                 </motion.h1>
 
                 <p className="text-sm lg:text-base">{slide.text}</p>
-                <div onClick={() => handleScroll("contactRef")} >
-                  <AnimatedButton text={"Get Started"} />
-                </div>
               </div>
 
               {/* Right Image */}

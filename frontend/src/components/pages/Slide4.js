@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import projects from "../proejcts";
 const Slide4 = () => {
 
-
+  
   return (
     <div className="flex flex-col lg:flex-row h-auto lg:min-h-screen ">
       {/* Left Section */}
