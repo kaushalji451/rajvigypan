@@ -44,7 +44,7 @@ const Contact = () => {
 
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="flex flex-col lg:flex-row">
       {/* Left Section */}
       <div className="bg-black text-white w-full lg:w-1/4 py-10 lg:py-20 px-6 lg:px-10 rounded-4xl">
         <h1 className="text-3xl lg:text-5xl py-5">Contact Us</h1>

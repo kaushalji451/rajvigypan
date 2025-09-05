@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const Projects = () => {
   return (
-    <div className="mt-20 ">
+    <div className="mt-20">
       {/* Project 1 */}
-      <div className="flex flex-col lg:flex-row max-h-auto ">
+      <div className="flex flex-col lg:flex-row max-h-auto">
         <div className="w-full lg:w-1/2 bg-[#c4c4c440] rounded-3xl flex flex-col px-6 lg:px-10 py-8">
           <motion.h1
             className="text-3xl sm:text-4xl lg:text-5xl font-bold pb-6"
@@ -29,26 +29,28 @@ const Projects = () => {
           </p>
         </div>
         <div className="w-full lg:w-1/2">
-          <Image
-            src={"/Blogimg2.jpeg"}
-            alt="Agra Youth Fest"
-            width={800}
-            height={600}
-            className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-3xl"
-          />
+          <div className="relative w-full aspect-video">
+            <Image
+              src={"/Blogimg2.jpeg"}
+              alt="Agra Youth Fest"
+              fill
+              className="object-cover rounded-3xl"
+            />
+          </div>
         </div>
       </div>
 
       {/* Project 2 */}
       <div className="flex flex-col lg:flex-row max-h-auto ">
-        <div className="w-full lg:w-1/2 order-2 lg:order-1">
-          <Image
-            src={"/Blogimg1.jpeg"}
-            alt="Women’s Celebration Event"
-            width={800}
-            height={600}
-            className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-3xl"
-          />
+        <div className="w-full lg:w-1/2  order-2 lg:order-1">
+          <div className="relative w-full aspect-video">
+            <Image
+              src={"/Blogimg1.jpeg"}
+              alt="Women’s Celebration Event"
+              fill
+              className="object-cover rounded-3xl"
+            />
+          </div>
         </div>
         <div className="w-full lg:w-1/2 bg-[#c4c4c440] rounded-3xl flex flex-col px-6 lg:px-10 py-8 order-1 lg:order-2">
           <h2 className="text-xl sm:text-2xl font-semibold pb-2 min-md:pt-20">
@@ -64,7 +66,7 @@ const Projects = () => {
       </div>
 
       {/* Project 3 */}
-      <div className="flex flex-col lg:flex-row max-h-auto">
+      <div className="flex flex-col lg:flex-row max-h-auto ">
         <div className="w-full lg:w-1/2 bg-[#c4c4c440] rounded-3xl flex flex-col px-6 lg:px-10 py-8">
           <h2 className="text-xl sm:text-2xl font-semibold pb-2 min-md:pt-20">
             DJ Night – Sham-E-Sufi
@@ -77,13 +79,14 @@ const Projects = () => {
           </p>
         </div>
         <div className="w-full lg:w-1/2">
-          <Image
-            src={"/Blogimg2.jpeg"}
-            alt="DJ Night"
-            width={800}
-            height={600}
-            className="w-full h-64 sm:h-80 lg:h-full object-cover rounded-3xl"
-          />
+          <div className="relative w-full aspect-video">
+            <Image
+              src={"/Blogimg2.jpeg"}
+              alt="Agra Youth Fest"
+              fill
+              className="object-cover rounded-3xl"
+            />
+          </div>
         </div>
       </div>
     </div>
