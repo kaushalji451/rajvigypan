@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function policy() {
+export default function Policy() {
     return (
         <main className="mx-auto max-w-4xl px-6 py-12 text-slate-800 mt-21">
             <header className="mb-10">
@@ -54,7 +54,7 @@ export default function policy() {
                 <p>
                     <strong>Raja Vigyapan Agency Pvt Ltd</strong> operates the website <strong>https://rajavigyapan.com/</strong> and
                     provides advertising, marketing, and related digital services (the
-                    "Services"). Our registered address is <strong>1 st Floor, 1-B, Ishwarpuri, Sector-12,Near Ishwar Dham Mandir,Indiranagar, Lucknow -226016 Uttar Pradesh</strong>. You
+                    &quot;Services&quot;). Our registered address is <strong>1 st Floor, 1-B, Ishwarpuri, Sector-12,Near Ishwar Dham Mandir,Indiranagar, Lucknow -226016 Uttar Pradesh</strong>. You
                     can contact us at <strong>info@rajavigyapan.com</strong> or <strong>+91-8960011163</strong>.
                 </p>
             </section>
@@ -74,7 +74,7 @@ export default function policy() {
                 <h2>3. Data we collect</h2>
                 <ul>
                     <li>
-                        <strong>Identity & contact data</strong> — name, business name,
+                        <strong>Identity &amp; contact data</strong> — name, business name,
                         postal address, email address, phone number, job title.
                     </li>
                     <li>
@@ -87,20 +87,20 @@ export default function policy() {
                         our payment partners).
                     </li>
                     <li>
-                        <strong>Usage & device data</strong> — IP address, device & browser
+                        <strong>Usage &amp; device data</strong> — IP address, device &amp; browser
                         type, operating system, pages viewed, referring URLs, time stamps,
                         and other diagnostic data.
                     </li>
                     <li>
-                        <strong>Cookies & similar tech</strong> — small files placed on your
-                        device; see <a href="#cookies">Cookies & tracking</a>.
+                        <strong>Cookies &amp; similar tech</strong> — small files placed on your
+                        device; see <a href="#cookies">Cookies &amp; tracking</a>.
                     </li>
                     <li>
                         <strong>User content</strong> — creatives, briefs, assets, and other
                         materials you provide for campaigns.
                     </li>
                     <li>
-                        <strong>Third‑party sources</strong> — public databases, social
+                        <strong>Third-party sources</strong> — public databases, social
                         platforms you connect, ad networks, analytics providers, and
                         partners who help us deliver the Services.
                     </li>
@@ -137,7 +137,7 @@ export default function policy() {
             </section>
 
             <section id="sharing" className="prose prose-slate max-w-none">
-                <h2>6. Sharing & disclosures</h2>
+                <h2>6. Sharing &amp; disclosures</h2>
                 <p>
                     We share personal data with service providers and partners who perform
                     services for us (e.g., hosting, analytics, payments, customer support,
@@ -151,7 +151,7 @@ export default function policy() {
             </section>
 
             <section id="cookies" className="prose prose-slate max-w-none">
-                <h2>7. Cookies & tracking</h2>
+                <h2>7. Cookies &amp; tracking</h2>
                 <p>
                     We use cookies, pixels, and similar technologies to remember settings,
                     authenticate sessions, analyze traffic, and personalize content and ads.
@@ -162,14 +162,14 @@ export default function policy() {
             </section>
 
             <section id="ads-analytics" className="prose prose-slate max-w-none">
-                <h2>8. Advertising & analytics</h2>
+                <h2>8. Advertising &amp; analytics</h2>
                 <p>
                     We may work with analytics providers and ad partners to measure
                     engagement and show ads that may be more relevant to you. These
                     partners may set their own cookies or use unique identifiers to build
                     audience insights and measure performance in compliance with
                     applicable laws. Where required, we will seek your consent before using
-                    non‑essential cookies.
+                    non-essential cookies.
                 </p>
             </section>
 
@@ -244,9 +244,9 @@ export default function policy() {
                 <h2>15. California — CCPA/CPRA notices</h2>
                 <ul>
                     <li>
-                        We may "collect" and "share" (as defined by California law)
+                        We may &quot;collect&quot; and &quot;share&quot; (as defined by California law)
                         identifiers, commercial information, internet activity, and
-                        inferences for business purposes and cross‑context behavioral
+                        inferences for business purposes and cross-context behavioral
                         advertising. We do not sell personal information for money.
                     </li>
                     <li>
@@ -274,7 +274,7 @@ export default function policy() {
                 <h2>17. Changes to this policy</h2>
                 <p>
                     We may update this Policy from time to time. The updated version will
-                    be indicated by a revised "Last updated" date and will be effective as
+                    be indicated by a revised &quot;Last updated&quot; date and will be effective as
                     soon as it is posted on our website. Material changes may be notified
                     to you by prominent notice on the website or via email.
                 </p>

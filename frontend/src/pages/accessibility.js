@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function accessibility() {
+export default function Accessibility() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-12 text-slate-800 mt-21">
       <header className="mb-10">
@@ -43,7 +43,8 @@ export default function accessibility() {
           <li>Ensuring color combinations meet required contrast standards.</li>
           <li>Reducing excessive use of motion or flashing elements.</li>
           <li>Ensuring videos, audio, and files are accessible where possible.</li>
-          <li>Supporting assistive technologies such as screen readers and
+          <li>
+            Supporting assistive technologies such as screen readers and
             keyboard navigation.
           </li>
         </ul>
@@ -52,7 +53,7 @@ export default function accessibility() {
       <section className="prose prose-slate max-w-none mt-8">
         <h2>Declaration of partial compliance</h2>
         <p>
-          Certain pages of our website may contain third‑party content or embeds
+          Certain pages of our website may contain third-party content or embeds
           (such as social media posts, maps, or advertising tools) that we do
           not fully control. As a result, those areas may not fully comply with
           accessibility standards. We are working to provide accessible
@@ -71,7 +72,10 @@ export default function accessibility() {
           <li><strong>Name:</strong> Raja Vigyapan Agency Pvt Ltd</li>
           <li><strong>Phone:</strong>  +91-8960011163</li>
           <li><strong>Email:</strong> info@rajavigyapan.com</li>
-          <li><strong>Address:</strong>1 st Floor, 1-B, Ishwarpuri, Sector-12, Near Ishwar Dham Mandir, Indiranagar, Lucknow -226016 Uttar Pradesh</li>
+          <li>
+            <strong>Address:</strong> 1 st Floor, 1-B, Ishwarpuri, Sector-12, Near Ishwar Dham Mandir,
+            Indiranagar, Lucknow -226016 Uttar Pradesh
+          </li>
         </ul>
         <p>
           We welcome your feedback and will make every effort to address issues
@@ -83,7 +87,7 @@ export default function accessibility() {
         <p>
           Note: This statement is provided to demonstrate our commitment to
           accessibility. For legal compliance, please review local regulations
-          (such as India’s Rights of Persons with Disabilities Act, 2016, or
+          (such as India&apos;s Rights of Persons with Disabilities Act, 2016, or
           international WCAG requirements).
         </p>
       </footer>
