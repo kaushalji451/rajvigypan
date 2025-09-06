@@ -80,14 +80,17 @@ const Footer = () => {
 
           {/* Section 3 */}
           <motion.div className="md:w-1/6">
-            {["Privacy Policy","Accessibility","Statement"].map((item, i) => (
-              <motion.p key={i} variants={textAnimation}>{item}</motion.p >
-            ))}
+            <Link href={"/policy"}>
+              <motion.p variants={textAnimation}>Privacy Policy</motion.p >
+            </Link>
+            <Link href={"/accessibility"}>
+              <motion.p variants={textAnimation}>Accessibility <br />  Statement</motion.p >
+            </Link>
           </motion.div>
 
           {/* Section 4 */}
           <motion.div className="md:w-1/6">
-              
+
           </motion.div>
         </motion.div>
 
@@ -98,7 +101,7 @@ const Footer = () => {
           animate={isInView ? 'visible' : 'hidden'}
           className="border-t text-sm pt-5"
         >
-          © { new Date().getFullYear()} by  Raja Vigyapan Agency Pvt Ltd. Powered and secured by US.
+          © {new Date().getFullYear()} by  Raja Vigyapan Agency Pvt Ltd. Powered and secured by US.
         </motion.div>
       </footer>
     </div>
