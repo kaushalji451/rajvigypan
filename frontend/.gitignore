@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+# gitginore
+rajavigypansheet-04dea529a0bc.json
+
 # testing
 /coverage
 

@@ -10,7 +10,9 @@ const navLinks = [
   { label: 'Services', href: '/services' },
   { label: 'Portfolio', href: '/projects' },
   { label: 'Clients', href: '/clients' },
+  { label: 'Tickets', href: '/ticket'},
   { label: 'Contact', href: 'contactRef', isRef: true }, // mark as ref
+  
 ]
 
 const menuVariants = {

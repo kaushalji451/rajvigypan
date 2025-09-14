@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import projects from "../proejcts";
 const Slide4 = () => {
 
-  
+
   return (
     <div className="flex flex-col lg:flex-row h-auto lg:min-h-screen ">
       {/* Left Section */}
@@ -36,19 +36,21 @@ const Slide4 = () => {
 
       {/* Right Section */}
       <div className="bg-[#d4efff] w-full lg:w-3/4 flex flex-col items-center rounded-4xl px-4 sm:px-8 lg:px-20 py-8 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
+        <div className="flex gap-16 max-sm:gap-6 w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 snap-x snap-mandatory">
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="rounded-xl overflow-hidden flex flex-col max-w-sm mx-auto"
+              className="
+          flex-shrink-0 snap-start rounded-xl overflow-hidden flex flex-col
+          min-w-[80%] sm:min-w-[60%] lg:min-w-[45%] max-w-sm
+        "
             >
-              {/* Reserve space with a fixed container */}
               <motion.div
                 className="w-full h-60 overflow-hidden rounded-2xl"
-                initial={{ y: 100, opacity: 0 }}       // Start way below
-                whileInView={{ y: 0, opacity: 1 }}     // Slide up to original position
-                viewport={{ once: true, amount: 0.5 }} // Trigger when 50% visible
-                transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.8, delay: 1, ease: 'easeOut' }}
               >
                 <Image
                   width={300}
@@ -58,7 +60,6 @@ const Slide4 = () => {
                   className="w-full h-full object-cover"
                 />
               </motion.div>
-
               <div className="p-4 flex flex-col flex-grow">
                 <h1 className="py-2 text-lg font-semibold">{project.title}</h1>
                 <p className="text-sm sm:text-base flex-grow">{project.desc}</p>
@@ -67,6 +68,7 @@ const Slide4 = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };
