@@ -72,11 +72,11 @@ const Navbar = ({ navRefs }) => {
         >
           <Link href="/" className="w-1/3">
             <Image
-              src="https://rajavigyapan.com/wp-content/uploads/2023/01/logo.jpg"
+              src="/Rvlogo.png"
               alt="Raja Vigyapan Logo"
-              width={80}
+              width={48}
               height={48}
-              className="h-15 w-15 rounded-full"
+              className="h-15 w-15 rounded-full  bg-white"
             />
           </Link>
 
