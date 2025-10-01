@@ -44,7 +44,7 @@ const Slide1 = () => {
                   alt={slide.title}
                   width={1920}
                   height={1080}
-                  className="w-full h-[250px] sm:h-[400px] lg:h-screen object-cover rounded-4xl"
+                  className="w-full h-[250px] sm:h-[400px] lg:h-screen object-fit rounded-4xl"
                 />
               </div>
             </div>

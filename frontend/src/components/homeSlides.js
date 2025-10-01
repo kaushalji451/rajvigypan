@@ -17,7 +17,7 @@ const slides = [
     {
       title: "Event Planning",
       text: "From corporate events to cultural festivals, we turn your ideas into unforgettable experiences. Our team handles everything — concept, coordination, and flawless execution. With attention to every detail, we create events that leave a lasting impact.",
-      img: "/Slide1img2.png",
+      img: "/Slideimg5.jpeg",
     },
   ];
 
