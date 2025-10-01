@@ -70,7 +70,7 @@ const Navbar = ({ navRefs }) => {
           animate={{ y: 0 }}
           exit={{ y: '-100%', transition: { duration: 0.3 } }}
         >
-          <Link href="/" className="w-1/3">
+          <Link href="/" className="w-1/3 flex items-center  gap-2">
             <Image
               src="/Rvlogo.png"
               alt="Raja Vigyapan Logo"
@@ -78,6 +78,7 @@ const Navbar = ({ navRefs }) => {
               height={48}
               className="h-15 w-15 rounded-full  bg-white"
             />
+            <p className='text-4xl font-semibold max-sm:text-3xl'>RajaVigyapan</p>
           </Link>
 
           {/* Desktop Menu */}
